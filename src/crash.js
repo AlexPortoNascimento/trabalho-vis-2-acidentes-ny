@@ -2,7 +2,7 @@
 import { loadDb } from './config';
 
 export class Crash {
-    constructor(filename = 'Motor_Vehicle_Collisions_-_Crashes_20251126.csv') {
+    constructor(filename = 'Motor_Vehicle_Collisions_-_Crashes.csv') {
         this.filename = filename;
         this.table = 'crashes';
     }

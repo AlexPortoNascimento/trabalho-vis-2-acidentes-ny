@@ -16,7 +16,7 @@ function callbacks(data, pickupLocationsData, taxi, zonesData) {
 }
 
 window.onload = async () => {
-    const crash = new Crash("Motor_Vehicle_Collisions_-_Crashes_20251126.csv");
+    const crash = new Crash("Motor_Vehicle_Collisions_-_Crashes.csv");
     await crash.init();
 
     await crash.loadCrash();

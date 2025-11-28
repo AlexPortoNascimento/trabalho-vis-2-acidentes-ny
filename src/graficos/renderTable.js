@@ -1,5 +1,5 @@
-export function renderTable(data) {
-    const container = document.getElementById('result-table');
+export function renderTable(data, containerId) {
+    const container = document.getElementById(containerId);
     
     if (!data || data.length === 0) {
         container.innerHTML = "<p>Nenhum dado encontrado.</p>";

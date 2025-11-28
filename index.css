@@ -1,3 +1,4 @@
+/* Estilização das geral */
 body {
     margin: 20px;
 
@@ -5,27 +6,53 @@ body {
     font-size: 1.25em;
   }
 
-.main-container {
-    height: 500px;
-
+/* Estilização das abas */
+#tabs {
     display: flex;
-    background-color: #efefef;
-
-    flex-direction: column;
-    flex-wrap: nowrap;
-    justify-content: center; 
-    align-items: center; 
+    gap: 0;
+    margin-bottom: 0;
 }
 
-.buttom-container {
-    display: flex;
+.tab {
+    padding: 10px 20px;
+    cursor: pointer;
 
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: center; 
-    align-items: center; 
+    background: #e0e0e0;
+    border: 1px solid #aaa;
+    border-bottom: none;
+    border-radius: 6px 6px 0 0;
+
+    font-weight: bold;
+    transition: background 0.2s;
 }
 
+.tab:hover {
+    background: #d5d5d5;
+}
+
+.tab.active {
+    background: #ffffff;
+    border-bottom: 1px solid #ffffff;
+}
+
+/* Painéis */
+#tab-content {
+    border: 1px solid #aaa;
+    border-radius: 0 6px 6px 6px;
+    background: #f2f2f2;
+    padding: 20px;
+}
+
+/* Cada painel individual */
+.tab-panel {
+    display: none;
+}
+
+.tab-panel.active {
+    display: block;
+}
+
+/* Estilização dos Gráficos e SVGs */
 svg {
     margin: 10px;
     background-color: #ffffff;

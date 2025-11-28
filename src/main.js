@@ -1,17 +1,20 @@
 import { Crash } from './crash';
-import { acidentesPorDestrito } from './analises/acidentesPorDestrito';
-import { acidentesPorHorario } from './analises/acidentesPorHorario';
+import { acidentesPorDistrito } from './analises/acidentesPorDistrito.js';
+import { setupTabs } from './tabs.js/';
+import { acidentesPorHorarioQuery } from './analises/acidentesPorHorarioQuery.js';
 
 window.onload = async () => {
     const crash = new Crash("Motor_Vehicle_Collisions_-_Crashes.csv");
     await crash.init();
-
     await crash.loadCrash();
 
     window.crash = crash;
     window.q = (sql) => crash.query(sql);
 
-    document.getElementById("btn-destrito").onclick = () => acidentesPorDestrito(crash);
-    document.getElementById("btn-horario").onclick = () => acidentesPorHorario(crash);
+    setupTabs(crash)
+
+    await acidentesPorDistrito(crash, "analise-matheus");
+    await acidentesPorHorarioQuery(crash, "analise-alexandre");
+
 
 }

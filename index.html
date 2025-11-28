@@ -8,10 +8,29 @@
 </head>
 
 <body>
-    <div class="main-container">
-        <button id="btn-destrito">Acidentes por Destrito</button>
-        <button id="btn-horario">Acidentes por Hora</button>
-        <div id="result-table"></div>
+    <div id="tabs">
+        <button class="tab active" data-target="tab-alexandre">Alexandre</button>
+        <button class="tab" data-target="tab-davis">Davis</button>
+        <button class="tab" data-target="tab-mainoth">Mainoth</button>
+        <button class="tab" data-target="tab-matheus">Matheus</button>
+    </div>
+
+    <div id="tab-content">
+        <div id="tab-alexandre" class="tab-panel active">
+            <div id="analise-alexandre"></div>
+        </div>
+
+        <div id="tab-davis" class="tab-panel">
+            <div id="analise-davis"></div>
+        </div>
+
+        <div id="tab-mainoth" class="tab-panel">
+            <div id="analise-mainoth"></div>
+        </div>
+
+        <div id="tab-matheus" class="tab-panel">
+            <div id="analise-matheus"></div>
+        </div>
     </div>
 
 

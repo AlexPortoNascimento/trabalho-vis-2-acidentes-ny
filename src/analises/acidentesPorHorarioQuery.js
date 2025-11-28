@@ -1,4 +1,4 @@
-import { renderTable } from "../graficos/renderTable";
+import { renderTable } from "../renderTable";
 
 export async function acidentesPorHorarioQuery(crash, containerId) {
   const sql = `

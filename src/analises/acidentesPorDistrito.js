@@ -1,4 +1,4 @@
-import { renderTable } from "../graficos/renderTable";
+import { renderTable } from "../renderTable";
 
 export async function acidentesPorDistrito(crash, containerId) {
   const sql = `

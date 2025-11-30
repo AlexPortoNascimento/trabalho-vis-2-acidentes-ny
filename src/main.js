@@ -1,3 +1,4 @@
+import { carregarDadosLinha, montarGraficoLinha } from './analises/acidentesAlexandre/linha';
 import { Crash } from './crash';
 import { setupTabs } from './tabs.js/';
 
@@ -11,5 +12,9 @@ window.onload = async () => {
     window.q = (sql) => crash.query(sql);
 
     setupTabs(crash);
+
+    const dadosLinha = await carregarDadosLinha(crash);
+
+    montarGraficoLinha(dadosLinha);
 
 }

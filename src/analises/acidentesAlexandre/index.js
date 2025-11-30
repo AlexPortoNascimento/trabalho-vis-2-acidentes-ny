@@ -2,7 +2,7 @@ export async function analiseInicial(crash) {
 	//Como varia o número de acidentes ao longo das 24 horas do dia?
 	const acidentesHora = await crash.query(`
   	SELECT 
-    	STRPTIME("CRASH DATE" || ' ' || "CRASH TIME", '%m/%d/%Y %H:%M') as hora,
+    	HOUR(STRPTIME("CRASH DATE" || ' ' || "CRASH TIME", '%m/%d/%Y %H:%M')) as hora,
     	COUNT(*) AS total
   	FROM crashes
   	GROUP BY hora

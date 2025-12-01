@@ -56,52 +56,46 @@ body {
     width: 100%;
     height: 100%;
     display: grid;
-    grid-template-columns: 1.70fr 1.15fr 1.15fr;
-    grid-template-rows: 1.5fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr; 
+    grid-template-rows: 40% 60%;
     gap: 8px;
     padding: 8px;
     box-sizing: border-box;
     background: #f4f4f4;
 }
 
-/* Mapa */
-.quad-principal {
+/* Gráfico de linha ocupa toda a primeira linha */
+.quad-linha {
     grid-column: 1 / span 2;
-    grid-row: 1 / span 2;
-    background: white;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-}
-
-/* Boxplot */
-.quad-superior-direito {
-    grid-column: 3;
     grid-row: 1;
     background: white;
     border: 1px solid #ccc;
     border-radius: 6px;
 }
 
-/* Linha */
-.quad-inferior-esquerdo {
-    grid-column: 1 / span 2;
-    grid-row: 3;
+/* Boxplot ocupa metade esquerda da segunda linha */
+.quad-boxplot {
+    grid-column: 1;
+    grid-row: 2;
     background: white;
     border: 1px solid #ccc;
     border-radius: 6px;
 }
 
-#vis-linha svg {
-  width: 100%;
-  height: 100%;
-  display: block;
-}
-
-/* Waffle / Treemap */
-.quad-inferior-direito {
-    grid-column: 3;
-    grid-row: 2 / span 2;
+/* Treemap ocupa metade direita da segunda linha */
+.quad-treemap {
+    grid-column: 2;
+    grid-row: 2;
     background: white;
     border: 1px solid #ccc;
     border-radius: 6px;
+}
+
+/* Garantir que os SVGs ocupem 100% do container */
+#vis-linha svg,
+#vis-boxplot svg,
+#vis-treemap svg {
+    width: 100%;
+    height: 100%;
+    display: block;
 }

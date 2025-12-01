@@ -1,6 +1,7 @@
 import { acidentesPorDistrito } from "./analises/acidentesPorDistrito";
 import { acidentesPorHorarioQuery } from "./analises/acidentesPorHorarioQuery";
 import { acidentesMainoth } from "./analises/acidentesMainoth";
+import { mount } from "./analises/acidentesDavis";
 
 export function setupTabs() {
     const tabs = document.querySelectorAll(".tab");
@@ -21,7 +22,7 @@ export function setupTabs() {
                     break;
 
                 case "tab-davis":
-                    await acidentesPorDistrito(crash, "analise-davis");
+                    await mount(crash, "analise-davis");
                     break;
 
                 case "tab-mainoth":

@@ -1,5 +1,6 @@
 import * as d3 from "d3";
 import { analiseInicial } from ".";
+import { carregarDadosBoxplot } from "./boxplot";
 
 export async function carregarDadosLinha(crash) {
 	const { acidentesHora } = await analiseInicial(crash);
@@ -14,7 +15,7 @@ export async function carregarDadosLinha(crash) {
 	return dadosConvertidos;
 }
 
-export function montarGraficoLinha(dados) {
+export function montarGraficoLinha(dados, onHourChangeCallback) {
 
 	const container = d3.select("#vis-linha");
 
@@ -100,7 +101,7 @@ export function montarGraficoLinha(dados) {
 	
 	function onHourChange(h) {
   		console.log("Hora selecionada:", h);
-  		// aqui você chama os outros gráficos
+  		onHourChangeCallback(h)
 	}
 
 	// Função de drag

@@ -16,7 +16,7 @@ export async function analiseHora(crash, horaEscolhida) {
   
   //Quais regiões de Nova York apresentam maior concentração de acidentes?
   // (Futuro: quando a tabela `zones` estiver carregada)
-  const acidentesPorRegiao = await crash.query(`
+  /*const acidentesPorRegiao = await crash.query(`
     SELECT 
       z.zone as zona,
       COUNT(*) AS total
@@ -26,7 +26,7 @@ export async function analiseHora(crash, horaEscolhida) {
 		WHERE HOUR(STRPTIME(c."CRASH DATE" || ' ' || c."CRASH TIME", '%m/%d/%Y %H:%M')) = ${horaEscolhida}
     GROUP BY z.zone
     ORDER BY total DESC;
-  `);
+  `);*/
   
   //Qual é a distribuição da severidade dos acidentes (feridos + mortos) em um dado horário do dia?
   const severidadePorHora = await crash.query(`
@@ -80,5 +80,5 @@ export async function analiseHora(crash, horaEscolhida) {
     ORDER BY total DESC;
   `);
 
-  return { acidentesPorRegiao, severidadePorHora, tiposVeiculo };
+  return { /*acidentesPorRegiao*/ severidadePorHora, tiposVeiculo };
 }

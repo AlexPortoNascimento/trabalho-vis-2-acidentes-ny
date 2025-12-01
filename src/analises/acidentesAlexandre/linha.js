@@ -22,7 +22,7 @@ export function montarGraficoLinha(dados) {
 
 	const { width, height } = container.node().getBoundingClientRect();
 
-	const margins = { top: 10, right: 20, bottom: 30, left: 50 };
+	const margins = { top: 10, right: 20, bottom: 35, left: 70 };
 
 	//Cria o svg
 	const svg = container
@@ -48,12 +48,28 @@ export function montarGraficoLinha(dados) {
 			.tickFormat(d => `${d}h`)
 		);
 	
+	svg.append("text")
+		.attr("x", width / 2)
+		.attr("y", height - 5)
+		.attr("text-anchor", "middle")
+		.style("font-size", "14px")
+		.text("Hora do dia");
+	
 	svg.append("g")
 		.attr("transform", `translate(${margins.left}, 0)`)
 		.call(
 			d3.axisLeft(yScale)
 			.ticks(6)
 		);
+	
+	svg.append("text")
+		.attr("x", -height / 2)
+		.attr("y", 15)
+		.attr("transform", "rotate(-90)") 
+		.attr("text-anchor", "middle")
+		.attr("font-size", "14px")
+		.attr("fill", "#333")
+		.text("Total de acidentes");
 	
 	//Linha
 	const line = d3.line()
@@ -112,7 +128,19 @@ export function montarGraficoLinha(dados) {
 		seletor.attr("x", xScale(horaAtual));
 
 		onHourChange(horaAtual);
+
+		tooltip.text(`Hora Selecionada: ${hora}h`);
 	});
+
+	//Tooltip da hora selecionada
+	const tooltip = svg.append("text")
+		.attr("x", width - margins.right)
+		.attr("y", margins.top + 10)
+		.attr("text-anchor", "end")
+		.attr("font-size", "14px")
+		.attr("font-family", "sans-serif")
+		.attr("fill", "#333")
+		.text(`Hora Selecionada: 0h`);
 
 	seletor.call(drag);
 

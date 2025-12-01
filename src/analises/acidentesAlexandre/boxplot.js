@@ -4,16 +4,17 @@ import { analiseHora } from ".";
 export async function carregarDadosBoxplot(crash, hora) {
   const { severidadePorHora } = await analiseHora(crash, hora);
 
-  // Converte para um array puro de números
   const severidades = severidadePorHora
-    .map(d => Number(d.severidade))
-    .filter(v => !isNaN(v));
+    .map(d => {
+      if (Array.isArray(d.severidade)) return d.severidade[0];
+      return Number(d.severidade);
+    })
+    .filter(v => !isNaN(v) && v > 0);
 
   console.log("Dados de severidade para boxplot:", severidades);
 
   return severidades;
 }
-
 
 export function montarBoxplot(dadosBrutos) {
     const container = d3.select("#vis-boxplot");
@@ -30,11 +31,12 @@ export function montarBoxplot(dadosBrutos) {
         .attr("height", "100%");
 
     //Define os quartis
-    const valores = dadosBrutos
-        .map(d => Number(d.severidade))
-        .filter(v => v > 0);
+    const valores = dadosBrutos.filter(v => !isNaN(v) && v > 0).sort((a, b) => a - b);
 
-    valores.sort((a, b) => a - b);
+ 
+    if (valores.length === 0) {
+        valores.push(0); // ou [0,1] se quiser range
+    }
 
     function q(p) {
         const pos = (valores.length - 1) * p;
@@ -48,8 +50,6 @@ export function montarBoxplot(dadosBrutos) {
     const q1 = q(0.25);
     const mediana = q(0.5);
     const q3 = q(0.75);
-
-
 
     //Escalas
     const xScale = d3.scaleBand()
